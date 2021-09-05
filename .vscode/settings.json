@@ -1,0 +1,31 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.workingDirectories": [
+    {
+      "directory": "./electron",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "./src",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "./scripts",
+      "changeProcessCWD": true
+    }
+  ],
+  "eslint.trace.server": "off",
+  "js/ts.implicitProjectConfig.experimentalDecorators": true,
+  "cSpell.words": ["varchar"],
+  "prettier.arrowParens": "avoid",
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "jest.jestCommandLine": "npm run tests"
+}

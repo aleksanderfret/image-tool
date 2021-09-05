@@ -1,0 +1,118 @@
+{
+  "name": "image-tool",
+  "version": "1.0.0",
+  "description": "Change image names and edit exif data.",
+  "main": ".webpack/main/index.js",
+  "author": {
+    "name": "Aleksander Fret",
+    "email": "olekfret80@gmail.com",
+    "url": "https://github.com/aleksanderfret/"
+  },
+  "homepage": "https://github.com/aleksanderfret/image-tool#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aleksanderfret/image-tool"
+  },
+  "bugs": {
+    "url": "https://github.com/aleksanderfret/image-tool/issues"
+  },
+  "license": "ISC",
+  "config": {
+    "forge": "./forge.config.js"
+  },
+  "scripts": {
+    "build:mac": "electron-forge make --platform darwin",
+    "build:win": "electron-forge make --platform win32 --targets @electron-forge/maker-squirrel",
+    "check": "npm-run-all lint format stylelint test compile clean",
+    "clean": "npx ts-node -T scripts/clean.ts",
+    "compile": "tsc -p ./tsconfig.json",
+    "format": "prettier --check \"./**/*.{js,jsx,ts,tsx}\"",
+    "format:fix": "prettier --write \"./**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint . --ext \".js,.jsx,.ts,.tsx\"",
+    "lint:fix": "eslint ./ --ext \".js,.jsx,.ts,.tsx\" --max-warnings=0 --fix",
+    "make": "electron-forge make",
+    "package": "electron-forge package",
+    "prepare": "husky install",
+    "prepare-commit-msg": "npx ts-node -T scripts/prepare-commit-msg.ts",
+    "pre-commit": "lint-staged && npm run test",
+    "pre-push": "npm-run-all check test",
+    "start": "electron-forge start --inspect-electron",
+    "stylelint": "stylelint src/**/*.scss --cache",
+    "stylelint:fix": "stylelint src/**/*.scss --cache --fix",
+    "test": "jest --runInBand --verbose",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "clsx": "1.1.1",
+    "electron-settings": "4.0.2",
+    "electron-squirrel-startup": "1.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "tslib": "2.3.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.60",
+    "@electron-forge/maker-deb": "6.0.0-beta.60",
+    "@electron-forge/maker-rpm": "6.0.0-beta.60",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.60",
+    "@electron-forge/maker-zip": "6.0.0-beta.60",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.60",
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.0.0",
+    "@types/electron-devtools-installer": "2.2.0",
+    "@types/jest": "27.0.1",
+    "@types/node": "16.7.10",
+    "@types/react": "17.0.19",
+    "@types/react-dom": "17.0.9",
+    "@typescript-eslint/eslint-plugin": "4.30.0",
+    "@typescript-eslint/parser": "4.30.0",
+    "@vercel/webpack-asset-relocator-loader": "1.7.0",
+    "css-loader": "6.2.0",
+    "electron": "14.0.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-promise": "5.1.0",
+    "eslint-plugin-react": "7.25.1",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-standard": "5.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.3.2",
+    "husky": "6.0.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "27.1.0",
+    "lint-staged": "11.1.2",
+    "npm-run-all": "4.1.5",
+    "postcss": "8.3.6",
+    "postcss-loader": "6.1.1",
+    "prettier": "2.3.2",
+    "sass": "1.38.2",
+    "sass-loader": "12.1.0",
+    "style-loader": "3.2.1",
+    "stylelint": "13.13.1",
+    "stylelint-config-prettier": "8.0.2",
+    "stylelint-config-recommended": "5.0.0",
+    "stylelint-config-standard": "22.0.0",
+    "stylelint-scss": "3.20.1",
+    "ts-jest": "27.0.5",
+    "ts-loader": "9.2.5",
+    "ts-node": "10.2.1",
+    "tsconfig-paths": "3.11.0",
+    "typescript": "4.4.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,scss,css,md}": [
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint -c .eslintrc --fix",
+      "echo test"
+    ],
+    "**/*.scss": [
+      "stylelint --syntax scss"
+    ]
+  }
+}
